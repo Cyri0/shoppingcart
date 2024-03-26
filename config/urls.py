@@ -16,7 +16,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from shopitem.models import ShopItem
+from django.shortcuts import render
+
+def indexPage(request):
+    items = ShopItem.objects.all()
+    return render(request, 'index.html', {'items': items})
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', indexPage, name='index')
 ]
