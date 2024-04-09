@@ -18,6 +18,7 @@ from django.contrib import admin
 from django.urls import path
 from shopitem.models import ShopItem
 from django.shortcuts import render
+from shopitem.views import processOrder
 
 def indexPage(request):
     items = ShopItem.objects.all()
@@ -25,5 +26,6 @@ def indexPage(request):
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', indexPage, name='index')
+    path('', indexPage, name='index'),
+    path('sendOrder/', processOrder)
 ]
